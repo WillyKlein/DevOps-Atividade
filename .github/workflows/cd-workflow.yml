@@ -1,0 +1,17 @@
+name: Continuous Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar o código
+        uses: actions/checkout@v3
+
+      - name: Simular deployment do Power BI
+        run: echo "Deployment do arquivo .pbix realizado com sucesso!"
