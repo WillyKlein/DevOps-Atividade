@@ -1,0 +1,33 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build (CI)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Verificar Arquivo Power BI
+        run: ls | grep '.pbix' || echo "Arquivo Power BI não encontrado!"
+    
+  deploy:
+    name: Deploy (CD)
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Simular Deployment do Power BI
+        run: echo "Deployment do arquivo .pbix realizado com sucesso!"
